@@ -1,0 +1,1034 @@
+{%extends 'calc/base.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Relativistic Kinetic Energy Calculator | Free Calculator to find Relativistic Kinetic Energy</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if  ke and m or m and v or v and ke %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+
+
+    });
+
+
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#reletivityke'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Relativistic Kinetic Energy Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'calc1' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Choose Option</span>
+        </div>
+    
+  
+       <select id="Given" name="Given"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if Given == 'form1' %}
+            <option value='form1' selected="selected">Find Relativistic Kinetic Energy | Using Velocity and mass</option>  
+            {% else %}
+            <option value='form1' >Find Relativistic Kinetic Energy | Using Velocity and mass</option>  
+            {% endif %}
+
+            {% if Given == 'form2' %}
+            <option value='form2' selected="selected">Find Velocity | Using Relativistic Kinetic Energy and mass</option>  
+            {% else %}
+            <option value='form2' >Find Velocity | Using Relativistic Kinetic Energy and mass</option>  
+            {% endif %}
+
+            {% if Given == 'form3' %}
+            <option value='form3' selected="selected">Find Mass | Using Relativistic Kinetic Energy and Velocity</option>  
+            {% else %}
+            <option value='form3' >Find Mass | Using Relativistic Kinetic Energy and Velocity</option>  
+            {% endif %} 
+         
+          </select>                     
+      </div>
+               
+        
+          {% if Given != "form3" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Mass</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="m" name="m" value="{{m}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="m_op">
+                            {% if m_op == 'ug' %}
+                            <option value="ug" selected="selected">Micrograms (ug) </option>
+                            {% else %}
+                            <option value="ug">Micrograms (ug) </option>
+                            {% endif %}
+
+                            {% if m_op == 'mg' %}
+                            <option value="mg" selected="selected">Milligrams (mg)</option>
+                            {% else %}
+                            <option value="mg">Milligrams (mg)</option>
+                            {% endif %}
+
+                            {% if m_op == 'g' %}
+                            <option value="g" selected="selected">Grams (g)</option>
+                            {% else %}
+                            <option value="g">Grams (g)</option>
+                            {% endif %}
+
+                            {% if m_op == 'dag' %}
+                            <option value="dag" selected="selected">decagrans (dag)</option>
+                            {% else %}
+                            <option value="dag">decagrans (dag)</option>
+                            {% endif %}
+
+                            {% if m_op == 'kg' %}
+                            <option value="kg" selected="selected">Kilograms (kg)</option>
+                            {% else %}
+                            <option value="kg">Kilograms (kg)</option>
+                            {% endif %}
+
+                            {% if m_op == 't' %}
+                            <option value="t" selected="selected">Metric tons (t)</option>
+                            {% else %}
+                            <option value="t">Metric tons (t)</option>
+                            {% endif %}
+
+                            {% if m_op == 'gr' %}
+                            <option value="gr" selected="selected">Grains (gr)</option>
+                            {% else %}
+                            <option value="gr">Grains (gr)</option>
+                            {% endif %}
+
+                            {% if m_op == 'dr' %}
+                            <option value="dr" selected="selected">Drachms (dr)</option>
+                            {% else %}
+                            <option value="dr">Drachms (dr)</option>
+                            {% endif %}
+
+                            {% if m_op == 'oz' %}
+                            <option value="oz" selected="selected">Ounces (oz)</option>
+                            {% else %}
+                            <option value="oz">Ounces (oz)</option>
+                            {% endif %}
+
+                            {% if m_op == 'lib' %}
+                            <option value="lib" selected="selected">Pounds (lib)</option>
+                            {% else %}
+                            <option value="lib">Pounds (lib)</option>
+                            {% endif %}
+
+                            {% if m_op == 'stone' %}
+                            <option value="stone" selected="selected">Stones (stone)</option>
+                            {% else %}
+                            <option value="stone">Stones (stone)</option>
+                            {% endif %}
+
+                            {% if m_op == 'uston' %}
+                            <option value="uston" selected="selected">US Short tons (us ton)</option>
+                            {% else %}
+                            <option value="uston">US Short tons (us ton)</option>
+                            {% endif %}
+
+                            {% if m_op == 'longton' %}
+                            <option value="longton" selected="selected">Imperial tons (long ton)</option>
+                            {% else %}
+                            <option value="longton">Imperial tons (long ton)</option>
+                            {% endif %}
+
+
+                            {% if m_op == 'me' %}
+                            <option value="me" selected="selected">Electrons rest mass (me)</option>
+                            {% else %}
+                            <option value="me">Electrons rest mass (me)</option>
+                            {% endif %}
+
+                            {% if m_op == 'u' %}
+                            <option value="u" selected="selected">Atomic mass unit (u)</option>
+                            {% else %}
+                            <option value="u">Atomic mass unit (u)</option>
+                            {% endif %}
+                        </select> 
+          </div>
+          {% endif %}             
+        
+          {% if Given != "form2" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Velocity</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="v" name="v" value="{{v}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="v_op">
+                            {% if v_op == 'm/s' %}
+                            <option value="m/s" selected="selected">Meters per second (m/s)</option>
+                            {% else %}
+                            <option value="m/s">Meters per second (m/s)</option>
+                            {% endif %}
+
+                            {% if v_op == 'km/h' %}
+                            <option value="km/h" selected="selected">Kilometers per hour (km/h) </option>
+                            {% else %}
+                            <option value="km/h">Kilometers per hour (km/h) </option>
+                            {% endif %}
+
+                            {% if v_op == 'ft/s' %}
+                            <option value="ft/s" selected="selected">feet per second (ft/s)</option>
+                            {% else %}
+                            <option value="ft/s">feet per second (ft/s)</option>
+                            {% endif %}
+
+                            {% if v_op == 'mi/h' %}
+                            <option value="mi/h" selected="selected">Miles per hour  (m/h)</option>
+                            {% else %}
+                            <option value="mi/h">Miles per hour (m/h)</option>
+                            {% endif %}
+
+                            {% if v_op == 'knots' %}
+                            <option value="knots" selected="selected">knots</option>
+                            {% else %}
+                            <option value="knots">knots</option>
+                            {% endif %}
+
+                            {% if v_op == 'km/s' %}
+                            <option value="km/s" selected="selected">Kilometers per second (km/s)</option>
+                            {% else %}
+                            <option value="km/s">Kilometers per second (km/s)</option>
+                            {% endif %}
+
+                            {% if v_op == 'mi/s' %}
+                            <option value="mi/s" selected="selected">Miles per second (mi/s)</option>
+                            {% else %}
+                            <option value="mi/s">Miles per second (mi/s)</option>
+                            {% endif %}
+
+                            {% if v_op == 'c' %}
+                            <option value="c" selected="selected">Light speed (c)</option>
+                            {% else %}
+                            <option value="c">Light speed (c)</option>
+                            {% endif %}
+
+                        </select> 
+          </div>
+          {% endif %}  
+        {% if Given != "form1" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Relativistic Kinetic Energy</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="ke" name="ke" value="{{ke}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="ke_op">
+                            {% if ke_op == 'j' %}
+                            <option value="j" selected="selected">Joules (J)</option>
+                            {% else %}
+                            <option value="j">Joules (J)</option>
+                            {% endif %}
+
+                            {% if ke_op == 'kj' %}
+                            <option value="kj" selected="selected">KiloJoules (KJ) </option>
+                            {% else %}
+                            <option value="kj">KiloJoules (KJ) </option>
+                            {% endif %}
+
+                            {% if ke_op == 'mj' %}
+                            <option value="mj" selected="selected">MegaJoules (MJ)</option>
+                            {% else %}
+                            <option value="mj">MegaJoules (MJ)</option>
+                            {% endif %}
+
+                            {% if ke_op == 'wh' %}
+                            <option value="wh" selected="selected">Watt Hours (Wh)</option>
+                            {% else %}
+                            <option value="wh">Watt Hours (Wh)</option>
+                            {% endif %}
+
+                            {% if ke_op == 'kwh' %}
+                            <option value="kwh" selected="selected">KiloWatt Hours (Kwh)</option>
+                            {% else %}
+                            <option value="kwh">KiloWatt Hours (Kwh)</option>
+                            {% endif %}
+
+                            {% if ke_op == 'ft-lbd' %}
+                            <option value="ftlbd" selected="selected">Foot-Pounds (ft-lbs)</option>
+                            {% else %}
+                            <option value="ftlbd">Foot-Pounds (ft-lbs)</option>
+                            {% endif %}
+
+                            {% if ke_op == 'kcal' %}
+                            <option value="kcal" selected="selected">KiloCalories (Kcal)</option>
+                            {% else %}
+                            <option value="kcal">KiloCalories (Kcal)</option>
+                            {% endif %}
+
+                            {% if ke_op == 'ev' %}
+                            <option value="ev" selected="selected">ElectronVolts (eV)</option>
+                            {% else %}
+                            <option value="ev">ElectronVolts (eV)</option>
+                            {% endif %}
+
+                        </select> 
+          </div>
+          {% endif %}  
+        
+          <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'home' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+</form>
+
+</div>
+</div>
+</div>
+<div id="clear">
+<div class="container" style="height: auto !important;">
+    {% if Given == "form1" and m and v %}
+    
+    <div class="card c1" id="reletivityke">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Relativistic Kinetic Energy:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Relativistic Kinetic Energy:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Relativistic Kinetic Energy Formula KE = mo *(c²)* (√(1-v²/c²)-1)<br>mo = m / √(1-v²/c²)</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>KE is the Kinetic Energy,</li>
+                        <li>m is the mass of the object,</li>
+                        <li>mo is the rest of mass,</li>
+                        <li>v is the speed of the object,</li>
+                        <li>c is the speed of the light.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>m = {{m}} {{m_op}}</p>
+            <p>v = {{v}} {{v_op}}</p>
+
+           {% if v_op == 'km/s' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 Kilometer per second = 1000 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 1000 m/s</p>
+            <p>Velocity(V)  = {{v}} * 1000 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+            
+            {% elif v_op == 'mi/s' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 Miles per second = 1609 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 1609 m/s</p>
+            <p>Velocity(V)  = {{v}} * 1609 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+          
+            {% elif v_op == 'c' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 ligth speed = 299 792 458 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 299 792 458 m/s</p>
+            <p>Velocity(V)  = {{v}} * 299 792 458 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% elif v_op == 'km/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 Kilometer per hour = 0.277778 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 5/18 m/s</p>
+            <p>Velocity(V)  = {{v}} * 5/18 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+            
+            {% elif v_op == 'ft/s' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 feet per second = 0.3048 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 0.3048 m/s</p>
+            <p>Velocity(V)  = {{v}} * 0.3048 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% elif v_op == 'mi/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 miles per hour = 0.44704 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 0.44704 m/s</p>
+            <p>Velocity(V)  = {{v}} * 0.44704 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% elif v_op == 'knots' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 knots = 0.5144 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 0.514444 m/s</p>
+            <p>Velocity(V)  = {{v}} * 0.514444 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% endif %} 
+            <br>
+            {% if m_op == 'ug' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Micrograms = 1<sup>-9</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1000000000 kg</p>
+            <p>Mass(m)  = {{m}} * 1000000000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'mg' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Milligrams = 1<sup>-6</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1000000 kg</p>
+            <p>Mass(m)  = {{m}} * 1000000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'g' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Grams = 0.001 kilogram</p>
+            <p>Mass(m)  = Mass(m) / 1000 kg</p>
+            <p>Mass(m)  = {{m}} / 1000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'dag' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Decagram = 0.01 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 0.01 kg</p>
+            <p>Mass(m)  = {{m}} * 0.01 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 't' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Metric Ton = 1000 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1000 kg</p>
+            <p>Mass(m)  = {{m}} * 1000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'gr' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Grains = 6.47989<sup>-5</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) / 15432 kg</p>
+            <p>Mass(m)  = {{m}} / 15432 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'dr' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Drachm = 0.0018 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 0.0018 kg</p>
+            <p>Mass(m)  = {{m}} * 0.0018 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+
+            {% elif m_op == 'oz' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Ounces = 0.0283495 kilogram</p>
+            <p>Mass(m)  = Mass(m) / 35.274 kg</p>
+            <p>Mass(m)  = {{m}} / 35.274 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'ib' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Pounds = 0.4535937 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 0.45359237 kg</p>
+            <p>Mass(m)  = {{m}} * 0.45359237 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'stone' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Stone = 6.35029 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 6.35029 kg</p>
+            <p>Mass(m)  = {{m}} * 6.35029 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'uston' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 US short tons = 907.185 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 907.185 kg</p>
+            <p>Mass(m)  = {{m}} * 907.185 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'longton' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Imperial tons = 1016.05 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1016.05 kg</p>
+            <p>Mass(m)  = {{m}} * 1016.05 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'me' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Electron Rest Mass = 9.10938<sup>-31</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) / 9.223e+18 kg</p>
+            <p>Mass(m)  = {{m}} / 9.223e+18 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'u' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Atomic mass unit = 1.66054<sup>-27</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) / 9.223e+18 kg</p>
+            <p>Mass(m)  = {{m}} / 9.223e+18 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            {% endif %}
+
+            <p><b>Put values into formula</b></p>
+
+
+            <p>mo = {{mm}} / √(1-{{vm}}<sup>2</sup>/299792458<sup>2</sup>))</p>
+            <p>Relativistic Kinetic Energy KE = {{mo}} * (299792458<sup>2</sup>) * √(1-{{vm}}<sup>2</sup>/299792458<sup>2</sup>)-1</p>
+            
+            <b>Relativistic Kinetic Energy = {{result}} J </b>
+             <details class="border border-primary">
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+    {% if Given == "form2" and m and ke %}
+    
+    <div class="card c1" id="reletivityke">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Velocity:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Velocity:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Velocity v = √(KE/(1/2*m))</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>KE is the Kinetic Energy,</li>
+                        <li>m is the mass of the object,</li>
+                        <li>v is the speed of the object,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>m = {{m}} {{m_op}}</p>
+            <p>ke = {{ke}} {{ke_op}}</p>
+
+           {% if ke_op == 'kj' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 KiloJoule = 1000 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 1000 J</p>
+            <p>Velocity(ke)  = {{ke}} * 1000 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'mj' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 MegaJoule = 1000000 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 1000000 J</p>
+            <p>Velocity(ke)  = {{ke}} * 1000000 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'wh' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 Watt Hours = 3600 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 3600 J</p>
+            <p>Velocity(ke)  = {{ke}} * 3600 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'kwh' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 KiloWatt Hours = 3.6000000 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 3.6000000 J</p>
+            <p>Velocity(ke)  = {{ke}} * 3.6000000 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'ft-lbs' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 foot Pound = 1.35582 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 1.356 J</p>
+            <p>Velocity(ke)  = {{ke}} * 1.356 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'kcal' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 KiloCalories = 4184 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 4184 J</p>
+            <p>Velocity(ke)  = {{ke}} * 4184 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+            
+             {% elif ke_op == 'ev' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 Electron Volt = 1.602176634 * 10<sup>-19</sup> Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 6.242 * 10<sup>18</sup> J</p>
+            <p>Velocity(ke)  = {{ke}} * 6.242 * 10<sup>18</sup> J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+            {% endif %}
+            <br>
+
+            {% if m_op == 'ug' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Micrograms = 1<sup>-9</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1000000000 kg</p>
+            <p>Mass(m)  = {{m}} * 1000000000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'mg' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Milligrams = 1<sup>-6</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1000000 kg</p>
+            <p>Mass(m)  = {{m}} * 1000000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'g' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Grams = 0.001 kilogram</p>
+            <p>Mass(m)  = Mass(m) / 1000 kg</p>
+            <p>Mass(m)  = {{m}} / 1000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'dag' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Decagram = 0.01 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 0.01 kg</p>
+            <p>Mass(m)  = {{m}} * 0.01 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 't' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Metric Ton = 1000 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1000 kg</p>
+            <p>Mass(m)  = {{m}} * 1000 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'gr' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Grains = 6.47989<sup>-5</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) / 15432 kg</p>
+            <p>Mass(m)  = {{m}} / 15432 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'dr' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Drachm = 0.0018 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 0.0018 kg</p>
+            <p>Mass(m)  = {{m}} * 0.0018 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+
+            {% elif m_op == 'oz' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Ounces = 0.0283495 kilogram</p>
+            <p>Mass(m)  = Mass(m) / 35.274 kg</p>
+            <p>Mass(m)  = {{m}} / 35.274 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'ib' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Pounds = 0.4535937 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 0.45359237 kg</p>
+            <p>Mass(m)  = {{m}} * 0.45359237 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'stone' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Stone = 6.35029 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 6.35029 kg</p>
+            <p>Mass(m)  = {{m}} * 6.35029 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'uston' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 US short tons = 907.185 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 907.185 kg</p>
+            <p>Mass(m)  = {{m}} * 907.185 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'longton' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Imperial tons = 1016.05 kilogram</p>
+            <p>Mass(m)  = Mass(m) * 1016.05 kg</p>
+            <p>Mass(m)  = {{m}} * 1016.05 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+
+            {% elif m_op == 'me' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Electron Rest Mass = 9.10938<sup>-31</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) / 9.223e+18 kg</p>
+            <p>Mass(m)  = {{m}} / 9.223e+18 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            
+            {% elif m_op == 'u' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
+            <p>1 Atomic mass unit = 1.66054<sup>-27</sup> kilogram</p>
+            <p>Mass(m)  = Mass(m) / 9.223e+18 kg</p>
+            <p>Mass(m)  = {{m}} / 9.223e+18 kg</p>
+            <p>Mass(m) = {{mm}} kg</p>
+            </details>
+            {% endif %}
+
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Velocity v = √({{ke}} / ( 1/2 * {{mm}} )) J</p>
+            
+            <b>Velocity v = {{result}} J </b>
+             <details class="border border-primary">
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+    {% if Given == "form3" and v and ke %}
+    
+    <div class="card c1" id="reletivityke">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Mass:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Mass:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Mass m = 2KE / v<sup>2</sup></p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>KE is the Kinetic Energy,</li>
+                        <li>m is the mass of the object,</li>
+                        <li>v is the speed of the object.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>v = {{v}} {{v_op}}</p>
+            <p>ke = {{ke}} {{ke_op}}</p>
+
+           {% if v_op == 'km/s' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 Kilometer per second = 1000 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 1000 m/s</p>
+            <p>Velocity(V)  = {{v}} * 1000 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+            
+            {% elif v_op == 'mi/s' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 Miles per second = 1609 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 1609 m/s</p>
+            <p>Velocity(V)  = {{v}} * 1609 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+          
+            {% elif v_op == 'c' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 ligth speed = 299 792 458 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 299 792 458 m/s</p>
+            <p>Velocity(V)  = {{v}} * 299 792 458 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% elif v_op == 'km/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 Kilometer per hour = 0.277778 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 5/18 m/s</p>
+            <p>Velocity(V)  = {{v}} * 5/18 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+            
+            {% elif v_op == 'ft/s' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 feet per second = 0.3048 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 0.3048 m/s</p>
+            <p>Velocity(V)  = {{v}} * 0.3048 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% elif v_op == 'mi/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 miles per hour = 0.44704 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 0.44704 m/s</p>
+            <p>Velocity(V)  = {{v}} * 0.44704 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+
+            {% elif v_op == 'knots' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Velocity {{v}} "{{v_op}}" to "m/s"</b></summary>
+            <p>1 knots = 0.5144 Meter per second</p>
+            <p>Velocity(V)  = Velocity(V) * 0.514444 m/s</p>
+            <p>Velocity(V)  = {{v}} * 0.514444 m/s</p>
+            <p>Velocity(V) = {{vm}} m/s</p>
+            </details>
+            {% endif %}
+            <br>
+
+           {% if ke_op == 'kj' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 KiloJoule = 1000 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 1000 J</p>
+            <p>Velocity(ke)  = {{ke}} * 1000 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'mj' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 MegaJoule = 1000000 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 1000000 J</p>
+            <p>Velocity(ke)  = {{ke}} * 1000000 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'wh' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 Watt Hours = 3600 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 3600 J</p>
+            <p>Velocity(ke)  = {{ke}} * 3600 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'kwh' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 KiloWatt Hours = 3.6000000 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 3.6000000 J</p>
+            <p>Velocity(ke)  = {{ke}} * 3.6000000 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'ft-lbs' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 foot Pound = 1.35582 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 1.356 J</p>
+            <p>Velocity(ke)  = {{ke}} * 1.356 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+
+            {% elif ke_op == 'kcal' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 KiloCalories = 4184 Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 4184 J</p>
+            <p>Velocity(ke)  = {{ke}} * 4184 J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+            
+             {% elif ke_op == 'ev' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
+            <p>1 Electron Volt = 1.602176634 * 10<sup>-19</sup> Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 6.242 * 10<sup>18</sup> J</p>
+            <p>Velocity(ke)  = {{ke}} * 6.242 * 10<sup>18</sup> J</p>
+            <p>Velocity(ke) = {{kem}} J</p>
+            </details>
+            {% endif %}
+            <br>
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Mass m = 2 * {{kem}} / {{vm}}<sup>2</sup> Kg</p>
+            
+            <b>Mass m = {{result}} Kg </b>
+             <details class="border border-primary">
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}
