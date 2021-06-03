@@ -132,7 +132,7 @@
                 <span class="input-group-text" id="basic-addon1">Mass</span>
             </div>
             
-           <input style="margin-top: 5px;width:100%" id="m" name="m" value="{{m}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+           <input style="margin-top: 5px;width:100%" id="m" name="m" value="{{m}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" required width="48"  >
                         <select class="select form-control" id="inlineFormInputGroup" name="m_op">
                             {% if m_op == 'ug' %}
                             <option value="ug" selected="selected">Micrograms (ug) </option>
@@ -234,7 +234,7 @@
                 <span class="input-group-text" id="basic-addon1">Velocity</span>
             </div>
             
-           <input style="margin-top: 5px;width:100%" id="v" name="v" value="{{v}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+           <input style="margin-top: 5px;width:100%" id="v" name="v" value="{{v}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" required width="48"  >
                         <select class="select form-control" id="inlineFormInputGroup" name="v_op">
                             {% if v_op == 'm/s' %}
                             <option value="m/s" selected="selected">Meters per second (m/s)</option>
@@ -293,7 +293,7 @@
                 <span class="input-group-text" id="basic-addon1">Relativistic Kinetic Energy</span>
             </div>
             
-           <input style="margin-top: 5px;width:100%" id="ke" name="ke" value="{{ke}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+           <input style="margin-top: 5px;width:100%" id="ke" name="ke" value="{{ke}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" required width="48"  >
                         <select class="select form-control" id="inlineFormInputGroup" name="ke_op">
                             {% if ke_op == 'j' %}
                             <option value="j" selected="selected">Joules (J)</option>
@@ -464,8 +464,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Milligrams = 1<sup>-6</sup> kilogram</p>
-            <p>Mass(m)  = Mass(m) * 1000000 kg</p>
-            <p>Mass(m)  = {{m}} * 1000000 kg</p>
+            <p>Mass(m)  = Mass(m) * 10<sup>6</sup> kg</p>
+            <p>Mass(m)  = {{m}} * 10<sup>6</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
             
@@ -473,8 +473,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Grams = 0.001 kilogram</p>
-            <p>Mass(m)  = Mass(m) / 1000 kg</p>
-            <p>Mass(m)  = {{m}} / 1000 kg</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>3</sup> kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>3</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
             
@@ -491,8 +491,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Metric Ton = 1000 kilogram</p>
-            <p>Mass(m)  = Mass(m) * 1000 kg</p>
-            <p>Mass(m)  = {{m}} * 1000 kg</p>
+            <p>Mass(m)  = Mass(m) * 10<sup>3</sup> kg</p>
+            <p>Mass(m)  = {{m}} * 10<sup>3</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
 
@@ -634,8 +634,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
             <p>1 KiloJoule = 1000 Joules</p>
-            <p>Velocity(ke)  = Velocity(ke) * 1000 J</p>
-            <p>Velocity(ke)  = {{ke}} * 1000 J</p>
+            <p>Velocity(ke)  = Velocity(ke) * 10<sup>3</sup> J</p>
+            <p>Velocity(ke)  = {{ke}} * 10<sup>3</sup> J</p>
             <p>Velocity(ke) = {{kem}} J</p>
             </details>
 
@@ -643,8 +643,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
             <p>1 MegaJoule = 1000000 Joules</p>
-            <p>Velocity(ke)  = Velocity(ke) * 1000000 J</p>
-            <p>Velocity(ke)  = {{ke}} * 1000000 J</p>
+            <p>Velocity(ke)  = Velocity(ke) * 10<sup>6</sup> J</p>
+            <p>Velocity(ke)  = {{ke}} * 10<sup>6</sup> J</p>
             <p>Velocity(ke) = {{kem}} J</p>
             </details>
 
@@ -699,8 +699,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Micrograms = 1<sup>-9</sup> kilogram</p>
-            <p>Mass(m)  = Mass(m) * 1000000000 kg</p>
-            <p>Mass(m)  = {{m}} * 1000000000 kg</p>
+            <p>Mass(m)  = Mass(m) * 10<sup>9</sup> kg</p>
+            <p>Mass(m)  = {{m}} * 10<sup>9</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
             
@@ -708,8 +708,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Milligrams = 1<sup>-6</sup> kilogram</p>
-            <p>Mass(m)  = Mass(m) * 1000000 kg</p>
-            <p>Mass(m)  = {{m}} * 1000000 kg</p>
+            <p>Mass(m)  = Mass(m) * 10<sup>6</sup> kg</p>
+            <p>Mass(m)  = {{m}} * 10<sup>6</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
             
@@ -717,8 +717,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Grams = 0.001 kilogram</p>
-            <p>Mass(m)  = Mass(m) / 1000 kg</p>
-            <p>Mass(m)  = {{m}} / 1000 kg</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>3</sup> kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>3</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
             
@@ -735,8 +735,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Mass {{m}} "{{m_op}}" to "kg"</b></summary>
             <p>1 Metric Ton = 1000 kilogram</p>
-            <p>Mass(m)  = Mass(m) * 1000 kg</p>
-            <p>Mass(m)  = {{m}} * 1000 kg</p>
+            <p>Mass(m)  = Mass(m) * 10<sup>3</sup> kg</p>
+            <p>Mass(m)  = {{m}} * 10<sup>3</sup> kg</p>
             <p>Mass(m) = {{mm}} kg</p>
             </details>
 
@@ -942,8 +942,8 @@
             <details class="border border-primary">
             <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
             <p>1 KiloJoule = 1000 Joules</p>
-            <p>Velocity(ke)  = Velocity(ke) * 1000 J</p>
-            <p>Velocity(ke)  = {{ke}} * 1000 J</p>
+            <p>Velocity(ke)  = Velocity(ke) * 10<sup>3</sup> J</p>
+            <p>Velocity(ke)  = {{ke}} * 10<sup>3</sup> J</p>
             <p>Velocity(ke) = {{kem}} J</p>
             </details>
 
@@ -968,9 +968,9 @@
             {% elif ke_op == 'kwh' %}
             <details class="border border-primary">
             <summary><b>Convert the Kinetic energy {{ke}} "{{ke_op}}" to "Joule"</b></summary>
-            <p>1 KiloWatt Hours = 3.6000000 Joules</p>
-            <p>Velocity(ke)  = Velocity(ke) * 3.6000000 J</p>
-            <p>Velocity(ke)  = {{ke}} * 3.6000000 J</p>
+            <p>1 KiloWatt Hours = 3.60<sup>6</sup> Joules</p>
+            <p>Velocity(ke)  = Velocity(ke) * 3.60<sup>6</sup> J</p>
+            <p>Velocity(ke)  = {{ke}} * 3.60<sup>6</sup> J</p>
             <p>Velocity(ke) = {{kem}} J</p>
             </details>
 
