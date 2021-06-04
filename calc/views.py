@@ -11,6 +11,9 @@ def calc1(request):
         m = request.POST.get('m')
         v = request.POST.get('v')
         ke = request.POST.get('ke')
+        def zerocount(v):
+            l = str(v).count('0')
+            return int(l)
         def velconverter(t,l):
             if t == "km/s":
                 l = l * 1000
@@ -91,10 +94,28 @@ def calc1(request):
                     ke = -ke
                 else:
                     ke = abs(ke)
-                
+                k1 = False
+                index_num = 0
+                startpoint = 0
+                endpoint = 0
+                count = zerocount(ke)
+                if str(ke) in 'e':
+                    index_num = ke.index('e')
+                    stratpoint = ke[:index_num]
+                    endpoint = ke[index_num+1:]
+                    k1 = True
+                elif count>5:
+                    r11 = str("{:.2e}".format(v))
+                    index_num = r11.index('e')
+                    startpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
+                    k1 = True
                 redict = {'J':ke,'KJ':ke/1000,'MJ':ke/1e+6,'Wh':ke/3600,'Kwh':ke/6e+6,'ft-lbs':ke/1.356,'Kcal':ke/4184,'eV':ke*6.242e+18
     }
                 context = {
+                'output':k1,
+                'start':startpoint,
+                'end':endpoint,
                 'm':m,
                 'mm':mm,
                 'mo':mo,
@@ -116,10 +137,28 @@ def calc1(request):
                 mm = massconverter(m_op,m)
 
                 v = math.sqrt(ke/(1/2*m))
-                
+                k1 = False
+                index_num = 0
+                startpoint = 0
+                endpoint = 0
+                count = zerocount(v)
+                if str(v) in 'e':
+                    index_num = v.index('e')
+                    stratpoint = v[:index_num]
+                    endpoint = v[index_num+1:]
+                    k1 = True
+                elif count>5:
+                    r11 = str("{:.2e}".format(v))
+                    index_num = r11.index('e')
+                    startpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
+                    k1 = True
                 redict = {"m/s":v,"km/h":v/3.6,"ft/s":v*3.281,"mi/h":v*2.237,"knots":v*1.944,"km/s":v/1000,"mi/s":v/1609,"light Speed(c)":v/2.998e+8
     }
                 context = {
+                'output':k1,
+                'start':startpoint,
+                'end':endpoint,
                 'm':m,
                 'mm':mm,
                 'ke':ke,
@@ -141,9 +180,27 @@ def calc1(request):
                 vm = velconverter(v_op,v)
 
                 m = (2*kem)/vm**2
-                
+                k1 = False
+                index_num = 0
+                startpoint = 0
+                endpoint = 0
+                count = zerocount(m)
+                if str(m) in 'e':
+                    index_num = m.index('e')
+                    stratpoint = m[:index_num]
+                    endpoint = m[index_num+1:]
+                    k1 = True
+                elif count>5:
+                    r11 = str("{:.2e}".format(m))
+                    index_num = r11.index('e')
+                    startpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
+                    k1 = True
                 redict = {"Micrograms(ug)":m*1e+9,"Milligrams(mg)":m*1e+6,"Grams(g)":m*1000,"Decagrams(dag)":m*100,"Metric tons(t)":m/1000,"Grains(gr)":m*15432,"Drachms(dr)":m*564.38,"Ounces(oz)":m*35.274,"Pounds(lb)":m*2.205,"Stone":m/6.35,"US short ton(US ton)":m/907,"Imperial ton(long ton)":m/1016,"Electron rest mass(me)":m*9.223e+18,"Atomic mass unit(u)":m/9.223e+18}
                 context = {
+                'output':k1,
+                'start':startpoint,
+                'end':endpoint,
                 'vm':vm,
                 'v':v,
                 'ke':ke,

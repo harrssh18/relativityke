@@ -585,8 +585,14 @@
             <p>mo = {{mm}} / √(1-{{vm}}<sup>2</sup>/299792458<sup>2</sup>))</p>
             <p>Relativistic Kinetic Energy KE = {{mo}} * (299792458<sup>2</sup>) * √(1-{{vm}}<sup>2</sup>/299792458<sup>2</sup>)-1</p>
             
-            <b>Relativistic Kinetic Energy = {{result}} J </b>
+            
+            {% if output %}
+                <b>Relativistic Kinetic Energy = {{start}} x <sup>{{end}}</sup> </b>
+            {% else %}
+                <b>Relativistic Kinetic Energy = {{result}} J </b>
+            {% endif %}
              <details class="border border-primary">
+            
             <summary>All conversion here:</summary>
             <p><table style="width:100%">
              <tr>
@@ -826,9 +832,16 @@
             <p><b>Put values into formula</b></p>
 
 
-            <p>Velocity v = √({{ke}} / ( 1/2 * {{mm}} )) J</p>
+            <p>Velocity v = √({{ke}} / ( 1/2 * {{mm}} )) m/s</p>
             
-            <b>Velocity v = {{result}} J </b>
+            
+
+            {% if output %}
+                <b>Velocity v = {{start}} x <sup>{{end}}</sup> m/s</b>
+            {% else %}
+                <b>Velocity v = {{result}} m/s</b>
+            {% endif %}
+
              <details class="border border-primary">
             <summary>All conversion here:</summary>
             <p><table style="width:100%">
@@ -1009,7 +1022,13 @@
 
             <p>Mass m = 2 * {{kem}} / {{vm}}<sup>2</sup> Kg</p>
             
-            <b>Mass m = {{result}} Kg </b>
+           
+
+            {% if output %}
+                <b>Mass m = {{start}} x <sup>{{end}}</sup> Kg</b>
+            {% else %}
+                <b>Mass m = {{result}} Kg </b>
+            {% endif %}
              <details class="border border-primary">
             <summary>All conversion here:</summary>
             <p><table style="width:100%">
