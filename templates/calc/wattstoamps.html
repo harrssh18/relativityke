@@ -347,7 +347,9 @@
           </div>
         </form>
     </div>
-</div>     
+</div>    
+</div>
+ 
 
 <div id="clear">
 <div class="container" style="height: auto !important;">
@@ -870,6 +872,8 @@
             {% endfor %}
             </table></p>
             </details>
+            </div>
+    </div>
         {% endif %}
 
     {% if ctype == 'form2' and ttype == 'form2'  and a and v and pf %}
@@ -976,6 +980,8 @@
             {% endfor %}
             </table></p>
             </details>
+            </div>
+    </div>
         {% endif %}
 
 
@@ -1110,6 +1116,8 @@
             {% endfor %}
             </table></p>
             </details>
+            </div>
+    </div>
         {% endif %}
             
 {% if ctype == 'form2' and ttype == 'form4' and a and p and v %}
@@ -1250,7 +1258,8 @@
             <p>Power Factor (PF) = ({{pw}} /  {{vw}}) / {{aw}})</p>
             <b>Power Factor (PF) = {{result}}</b>
             
-             
+          </div>
+          </div>   
         {% endif %}
 
 
@@ -1395,6 +1404,8 @@
             {% endfor %}
             </table></p>
             </details>
+            </div>
+    </div>
     {% endif %}
 
 {% if ctype == "form3" and ttype == "form2" and v and a and pf %}
@@ -1503,6 +1514,8 @@
             {% endfor %}
             </table></p>
             </details>
+        </div>
+    </div>
     {% endif %}
     {% if ctype == "form3" and ttype == "form3" and p and a and pf %}
     
@@ -1637,6 +1650,8 @@
             {% endfor %}
             </table></p>
             </details>
+        </div>
+    </div>
     {% endif %}
 
     {% if ctype == "form3" and ttype == "form4" and p and a and v %}
@@ -1821,9 +1836,11 @@
             {% endfor %}
             </table></p>
             </details>
+        </div>
+    </div>
     {% endif %}
             
    </div>
     </div>
-       
+
 {% endblock content %}

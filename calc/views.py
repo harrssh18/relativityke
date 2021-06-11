@@ -96,22 +96,26 @@ def relativistic(request):
                     ke = -ke
                 else:
                     ke = abs(ke)
+                
                 k1 = False
                 index_num = 0
                 startpoint = 0
                 endpoint = 0
                 count = zerocount(ke)
-                if str(ke) in 'e':
-                    index_num = ke.index('e')
-                    stratpoint = ke[:index_num]
-                    endpoint = ke[index_num+1:]
+                if 'e' in str(ke):
+                    r11 = str(ke)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
+                    
                 elif count>5:
                     r11 = str("{:.2e}".format(ke))
                     index_num = r11.index('e')
                     startpoint = r11[:index_num]
                     endpoint = r11[index_num+1:]
                     k1 = True
+                    
                 redict = {'J':ke,'KJ':ke/1000,'MJ':ke/1e+6,'Wh':ke/3600,'Kwh':ke/6e+6,'ft-lbs':ke/1.356,'Kcal':ke/4184,'eV':ke*6.242e+18
     }
                 context = {
@@ -188,9 +192,10 @@ def relativistic(request):
                 endpoint = 0
                 count = zerocount(m)
                 if str(m) in 'e':
-                    index_num = m.index('e')
-                    stratpoint = m[:index_num]
-                    endpoint = m[index_num+1:]
+                    r11 = str(m)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(m))
@@ -478,16 +483,19 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
+                
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
                     index_num = r11.index('e')
                     startpoint = r11[:index_num]
                     endpoint = r11[index_num+1:]
                     k1 = True
+                
                 redict = {'Ampere (A)':re,'MilliAmpere (mA)':re * 1000,'MicroAmpere (uA)': re*1000000}
                 context = {
                 'output':k1,
@@ -522,9 +530,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -566,9 +575,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -611,9 +621,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -657,9 +668,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -703,9 +715,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -788,9 +801,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -847,9 +861,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -905,9 +920,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
@@ -969,9 +985,10 @@ def wattstoamps(request):
                 endpoint = 0
                 count = zerocount(re)
                 if str(re) in 'e':
-                    index_num = re.index('e')
-                    stratpoint = re[:index_num]
-                    endpoint = re[index_num+1:]
+                    r11 = str(re)
+                    index_num = r11.index('e')
+                    stratpoint = r11[:index_num]
+                    endpoint = r11[index_num+1:]
                     k1 = True
                 elif count>5:
                     r11 = str("{:.2e}".format(re))
