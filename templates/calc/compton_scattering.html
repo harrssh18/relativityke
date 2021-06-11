@@ -1,0 +1,836 @@
+{%extends 'calc/base.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Compton Scattring Calculator | Free Calculator to find Compton Scattring</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if  m or w or sa %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+
+
+    });
+
+
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#comptonscattering'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Compton Scattring Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'compton_scattering' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Choose Option</span>
+        </div>
+    
+  
+       <select id="Given" name="Given"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if Given == 'form1' %}
+            <option value='form1' selected="selected">Find Mass | Using Scattring angle and Wave length</option>  
+            {% else %}
+            <option value='form1' >Find Mass | Using Scattring angle and Wave length</option>  
+            {% endif %}
+
+            {% if Given == 'form2' %}
+            <option value='form2' selected="selected">Find Scattring angle | Using Mass and Wave length</option>  
+            {% else %}
+            <option value='form2' >Find Scattring angle | Using Mass and Wave length</option>  
+            {% endif %}
+
+            {% if Given == 'form3' %}
+            <option value='form3' selected="selected">Find Wave length | Using Mass and Scattring angle</option>  
+            {% else %}
+            <option value='form3' >Find Wave length | Using Mass and Scattring angle</option>  
+            {% endif %} 
+         
+          </select>                     
+      </div>
+               
+        
+          {% if Given != "form3" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Wave Length</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="w" name="w" value="{{w}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="w_op">
+                            {% if m_op == 'A' %}
+                            <option value="A" selected="selected">Angstrom (A) </option>
+                            {% else %}
+                            <option value="A">Angstrom (A) </option>
+                            {% endif %}
+
+                            {% if m_op == 'pm' %}
+                            <option value="pm" selected="selected">PicoMeter (pm)</option>
+                            {% else %}
+                            <option value="pm">PicoMeter (pm)</option>
+                            {% endif %}
+
+                            {% if m_op == 'nm' %}
+                            <option value="nm" selected="selected">NanoMeter (nm)</option>
+                            {% else %}
+                            <option value="nm">NanoMeter (nm)</option>
+                            {% endif %}
+
+                            {% if m_op == 'um' %}
+                            <option value="um" selected="selected">MicroMeter (um)</option>
+                            {% else %}
+                            <option value="um">MicroMeter (um)</option>
+                            {% endif %}
+
+                            {% if m_op == 'mm' %}
+                            <option value="mm" selected="selected">MilliMeter (mm)</option>
+                            {% else %}
+                            <option value="mm">MilliMeter (mm)</option>
+                            {% endif %}
+
+                            {% if m_op == 'cm' %}
+                            <option value="cm" selected="selected">CentiMeter (cm)</option>
+                            {% else %}
+                            <option value="cm">CentiMeter (cm)</option>
+                            {% endif %}
+
+                            {% if m_op == 'm' %}
+                            <option value="m" selected="selected">Meter (m)</option>
+                            {% else %}
+                            <option value="m">Meter (m)</option>
+                            {% endif %}
+                        </select> 
+          </div>
+          {% endif %}             
+        
+          {% if Given != "form2" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Scattring angle</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="sa" name="sa" value="{{sa}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="sa_op">
+                            {% if sa_op == 'deg' %}
+                            <option value="deg" selected="selected">degrees (deg)</option>
+                            {% else %}
+                            <option value="deg">degrees (deg)</option>
+                            {% endif %}
+
+                            {% if sa_op == 'rad' %}
+                            <option value="rad" selected="selected">radians (rad) </option>
+                            {% else %}
+                            <option value="rad">radians (rad) </option>
+                            {% endif %}
+
+                            {% if sa_op == 'gon' %}
+                            <option value="gon" selected="selected">gradiuns (gon)</option>
+                            {% else %}
+                            <option value="gon">gradiuns (gon)</option>
+                            {% endif %}
+
+                            {% if sa_op == 'tr' %}
+                            <option value="tr" selected="selected">turns (tr)</option>
+                            {% else %}
+                            <option value="tr">turns (tr)</option>
+                            {% endif %}
+
+                            {% if sa_op == 'arcmin' %}
+                            <option value="arcmin" selected="selected">Minutes of arc (arcmin)</option>
+                            {% else %}
+                            <option value="arcmin">Minutes of arc (arcmin)</option>
+                            {% endif %}
+
+                            {% if sa_op == 'arcsec' %}
+                            <option value="arcsec" selected="selected">Seconds of arc (arcsec)</option>
+                            {% else %}
+                            <option value="arcsec">Seconds of arc (arcsec)</option>
+                            {% endif %}
+
+                            {% if sa_op == 'mrad' %}
+                            <option value="mrad" selected="selected">Milliradians (mrad)</option>
+                            {% else %}
+                            <option value="mrad">Milliradians (mrad)</option>
+                            {% endif %}
+
+                            {% if sa_op == 'c' %}
+                            <option value="u" selected="selected">Microradians (urad)</option>
+                            {% else %}
+                            <option value="u">Microradians (urad)</option>
+                            {% endif %}
+
+                        </select> 
+          </div>
+          {% endif %}  
+        {% if Given != "form1" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Mass</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="m" name="m" value="{{m}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="=any" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="m_op">
+                            {% if m_op == 'ug' %}
+                            <option value="ug" selected="selected">Micrograms (ug)</option>
+                            {% else %}
+                            <option value="ug">Micrograms (ug)</option>
+                            {% endif %}
+
+                            {% if m_op == 'mg' %}
+                            <option value="mg" selected="selected">Milligrams (mg) </option>
+                            {% else %}
+                            <option value="mg">Milligrams (mg) </option>
+                            {% endif %}
+
+                            {% if m_op == 'g' %}
+                            <option value="g" selected="selected">Grams (g)</option>
+                            {% else %}
+                            <option value="g">Grams (g)</option>
+                            {% endif %}
+
+                            {% if m_op == 'dag' %}
+                            <option value="dag" selected="selected">Decagrams (dag)</option>
+                            {% else %}
+                            <option value="dag">Decagrams (dag)</option>
+                            {% endif %}
+
+                            {% if m_op == 'kg' %}
+                            <option value="kg" selected="selected">Kilograms (kg)</option>
+                            {% else %}
+                            <option value="kg">Kilograms (kg)</option>
+                            {% endif %}
+
+                            {% if m_op == 'me' %}
+                            <option value="me" selected="selected">Electron rest mass (me)</option>
+                            {% else %}
+                            <option value="me">Electron rest mass (me)</option>
+                            {% endif %}
+
+                            {% if m_op == 'mp' %}
+                            <option value="mp" selected="selected">Proton rest mass (mp)</option>
+                            {% else %}
+                            <option value="mp">Proton rest mass (mp)</option>
+                            {% endif %}
+
+                            {% if m_op == 'u' %}
+                            <option value="u" selected="selected">Atomic mass unit (u)</option>
+                            {% else %}
+                            <option value="u">Atomic mass unit (u)</option>
+                            {% endif %}
+
+                        </select> 
+          </div>
+          {% endif %}  
+        
+          <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'compton_scattering' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+</form>
+
+</div>
+</div>
+</div>
+<div id="clear">
+<div class="container" style="height: auto !important;">
+    {% if Given == 'form3'  and m and sa %}
+    
+    <div class="card c1" id="comptonscattering">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find WaveLength:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>WaveLength:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">WaveLength Formula w =  h / (m * c) * (1 - cos(θ))</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>h = 6.62607 * 10⁻³⁴ J/s is the Planck constant,</li>
+                        <li>m is the mass of a particle,</li>
+                        <li>c = 299 792 458 m/s is the speed of light,</li>
+                        <li>w is the Wave length extractor,</li>
+                        <li>sa is the angle between the directions of scattered and incident rays.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>m = {{m}} {{m_op}}</p>
+            <p>sa = {{sa}} {{sa_op}}</p>
+
+
+            {% if m_op == 'ug' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Microgram = 10<sup>-9</sup> Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>9</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>9</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+            
+            {% elif m_op == 'mg' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Milligram = 10<sup>-6</sup> Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>6</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>6</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+          
+            {% elif m_op == 'g' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Gram = 0.001 Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>3</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>3</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+
+            {% elif m_op == 'dag' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Gram = 0.01 Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 100 Kg</p>
+            <p>Mass(m)  = {{m}} / 100 kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+
+            {% elif m_op == 'me' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Electron rest mass = 9.10938<sup>-31</sup> Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 9.223<sup>18</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 9.223<sup>18</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+
+            {% endif %}
+            <br>
+            
+            {% if sa_op == 'deg' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Degree = 0.0174533 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * π/180 Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/180 Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+            
+            {% elif sa_op == 'gon' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Gradian = 0.015708  Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * π/200 Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/200 Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+          
+            {% elif sa_op == 'tr' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Turn = 6.28319 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * 2π Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * 2π Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'arcmin' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Minute of Arc = 0.000290888 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * π/(60*180) Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/(60*180) Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'arcsec' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Second of Arc = 4.8481<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle (sa) * π/(180*3600) Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/(180*3600) Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'mrad' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 MilliRadian = 0.001 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle (sa) / 1000 Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} / 1000 Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'urad' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 MicroRadian = 10<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle (sa) * 10<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * 10<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% endif %}
+            <br>
+            
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Wave Length w = 6.62607 * 10<sup>-34</sup> / ({{mm}} * {{c}}) * (1 - cos({{sa}})) Meter</p>
+            
+            
+            {% if output %}
+                <b>Wave Length w = {{start}} x 10<sup>{{end}}</sup> Meter</b>
+            {% else %}
+                <b>Wave Length w = {{result}} Meter </b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+
+    {% if Given == 'form2'  and m and w %}
+    
+    <div class="card c1" id="comptonscattering">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Scattering Angle:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Scattering Angle:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Scattering Angle sa = 1 - w * m * c / h</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>h = 6.62607 * 10⁻³⁴ J/s is the Planck constant,</li>
+                        <li>m is the mass of a particle,</li>
+                        <li>c = 299 792 458 m/s is the speed of light,</li>
+                        <li>w is the Wave length extractor,</li>
+                        <li>sa is the angle between the directions of scattered and incident rays.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>m = {{m}} {{m_op}}</p>
+            <p>w = {{w}} {{w_op}}</p>
+
+
+            {% if m_op == 'ug' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Microgram = 10<sup>-9</sup> Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>9</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>9</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+            
+            {% elif m_op == 'mg' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Milligram = 10<sup>-6</sup> Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>6</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>6</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+          
+            {% elif m_op == 'g' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Gram = 0.001 Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 10<sup>3</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 10<sup>3</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+
+            {% elif m_op == 'dag' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Gram = 0.01 Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 100 Kg</p>
+            <p>Mass(m)  = {{m}} / 100 kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+
+            {% elif m_op == 'me' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Mass {{m}} "{{m_op}}" to "Kilogram"</b></summary>
+            <p>1 Electron rest mass = 9.10938<sup>-31</sup> Kilogram</p>
+            <p>Mass(m)  = Mass(m) / 9.223<sup>18</sup> Kg</p>
+            <p>Mass(m)  = {{m}} / 9.223<sup>18</sup> kg</p>
+            <p>Mass(m) = {{mm}} Kg</p>
+            </details>
+
+            {% endif %}
+            <br>
+            
+            {% if w_op == 'A' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 Angstorm = 10<sup>-10</sup> Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>10</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>10</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+            
+            {% elif w_op == 'pm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 PicoMeter = 10<sup>-12</sup>  Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>-12</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>-12</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+          
+            {% elif w_op == 'nm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 NanoMeter = 10<sup>-9</sup> Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>9</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>9</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+            {% elif w_op == 'um' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 MicroMeter = 10<sup>-6</sup> Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>6</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>6</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+            {% elif w_op == 'mm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 MilliMeter = 0.001 Meter</p>
+            <p>Wave Length (w)  = Wave Length (w) / 1000 Meter</p>
+            <p>Wave Length (w)  = {{w}} / 1000 Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+            {% elif w_op == 'cm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 CentiMeter = 0.01 Meter</p>
+            <p>Wave Length (w)  = Wave Length (w) / 100 Meter</p>
+            <p>Wave Length (w)  = {{w}} / 100 Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+
+            {% endif %}
+            <br>
+            
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Scattering Angle sa = 1 - {{wm}} * {{mm}} * {{c}} /6.62607 * 10<sup>-34</sup> Radian</p>
+            
+            
+            {% if output %}
+                <b>Scattering Angle sa = {{start}} x 10<sup>{{end}}</sup> Radian</b>
+            {% else %}
+                <b>Scattering Angle sa = {{result}} Radian </b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+ {% if Given == 'form1'  and w and sa %}
+    
+    <div class="card c1" id="comptonscattering">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Mass:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Mass:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Mass Formula m =  h / w  * (1 - cos(sa))</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>h = 6.62607 * 10⁻³⁴ J/s is the Planck constant,</li>
+                        <li>m is the mass of a particle,</li>
+                        <li>c = 299 792 458 m/s is the speed of light,</li>
+                        <li>w is the Wave length extractor,</li>
+                        <li>sa is the angle between the directions of scattered and incident rays.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>w = {{w}} {{w_op}}</p>
+            <p>sa = {{sa}} {{sa_op}}</p>
+
+            {% if w_op == 'A' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 Angstorm = 10<sup>-10</sup> Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>10</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>10</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+            
+            {% elif w_op == 'pm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 PicoMeter = 10<sup>-12</sup>  Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>-12</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>-12</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+          
+            {% elif w_op == 'nm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 NanoMeter = 10<sup>-9</sup> Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>9</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>9</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+            {% elif w_op == 'um' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 MicroMeter = 10<sup>-6</sup> Meter</p>
+            <p>Wave Length (w)  = Wave Length(w) / 10<sup>6</sup> Meter</p>
+            <p>Wave Length (w)  = {{w}} / 10<sup>6</sup> Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+            {% elif w_op == 'mm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 MilliMeter = 0.001 Meter</p>
+            <p>Wave Length (w)  = Wave Length (w) / 1000 Meter</p>
+            <p>Wave Length (w)  = {{w}} / 1000 Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+            {% elif w_op == 'cm' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Wave Length {{w}} "{{w_op}}" to "Meter"</b></summary>
+            <p>1 CentiMeter = 0.01 Meter</p>
+            <p>Wave Length (w)  = Wave Length (w) / 100 Meter</p>
+            <p>Wave Length (w)  = {{w}} / 100 Meter</p>
+            <p>Wave Length (w) = {{wm}} Meter</p>
+            </details>
+
+
+            {% endif %}
+            <br>
+            
+            {% if sa_op == 'deg' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Degree = 0.0174533 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * π/180 Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/180 Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+            
+            {% elif sa_op == 'gon' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Gradian = 0.015708  Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * π/200 Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/200 Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+          
+            {% elif sa_op == 'tr' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Turn = 6.28319 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * 2π Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * 2π Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'arcmin' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Minute of Arc = 0.000290888 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle(sa) * π/(60*180) Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/(60*180) Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'arcsec' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 Second of Arc = 4.8481<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle (sa) * π/(180*3600) Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * π/(180*3600) Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'mrad' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 MilliRadian = 0.001 Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle (sa) / 1000 Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} / 1000 Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% elif sa_op == 'urad' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Scattering Angle {{sa}} "{{sa_op}}" to "Radian"</b></summary>
+            <p>1 MicroRadian = 10<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa)  = Scattering Angle (sa) * 10<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa)  = {{sa}} * 10<sup>-6</sup> Radian</p>
+            <p>Scattering Angle (sa) = {{sam}} Radian</p>
+            </details>
+
+            {% endif %}
+            <br>
+            
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Mass m = 6.62607 * 10<sup>-34</sup> / {{wm}} * (1 - cos({{sa}})) Kg</p>
+            
+            
+            {% if output %}
+                <b>Mass m = {{start}} x 10<sup>{{end}}</sup> Kg</b>
+            {% else %}
+                <b>Mass m = {{result}} Kg </b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

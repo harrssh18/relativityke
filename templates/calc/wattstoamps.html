@@ -1,0 +1,1829 @@
+{%extends 'calc/base.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Watts to amps Calculator | Free Calculator to find Watts to amps</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{% endblock meta %}
+
+{% block content %}
+{% if  a or v or p %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+
+
+    });
+
+
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#wattstoamps'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Watts to Amps Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'wattstoamps' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Current Type</span>
+        </div>
+    
+  
+       <select id="ctype" name="ctype"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if ctype == 'form1' %}
+            <option value='form1' selected="selected">DC</option>  
+            {% else %}
+            <option value='form1' >DC</option>  
+            {% endif %}
+
+            {% if ctype == 'form2' %}
+            <option value='form2' selected="selected">AC - Single Phase</option>  
+            {% else %}
+            <option value='form2' >AC - Single Phase</option>  
+            {% endif %}
+
+            {% if ctype == 'form3' %}
+            <option value='form3' selected="selected">AC - Three Phase</option>  
+            {% else %}
+            <option value='form3' >AC - Three Phase</option>  
+            {% endif %} 
+         
+          </select>                     
+      </div>
+
+      {% if ctype == "form3" %}
+      <div class="input-group mb-3">
+                      
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Voltage Type</span>
+        </div>
+            <select id="vtype" name="vtype"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if vtype == 'form1' %}
+            <option value='form1' selected="selected">Line to Line Voltage</option>  
+            {% else %}
+            <option value='form1' >Line to Line Voltage</option>  
+            {% endif %}
+
+            {% if vtype == 'form2' %}
+            <option value='form2' selected="selected">Line to Neutral Voltage</option>  
+            {% else %}
+            <option value='form2' >Line to Neutral Voltage</option>  
+            {% endif %} 
+         
+          </select>
+          </div> 
+        {% endif %}   
+
+        {% if ctype == "form1" %}
+      <div class="input-group mb-3">
+                      
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Choose option</span>
+        </div>
+            <select id="ttype" name="ttype"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if ttype == 'form1' %}
+            <option value='form1' selected="selected">Find Amperage | Using Power and Voltage</option>  
+            {% else %}
+            <option value='form1' >Find Amperage | Using Power and Voltage</option>  
+            {% endif %}
+
+            {% if ttype == 'form2' %}
+            <option value='form2' selected="selected">Find Power | Using Voltage and Amperage</option>  
+            {% else %}
+            <option value='form2' >Find Power | Using Voltage and Amperage</option>  
+            {% endif %} 
+            {% if ttype == 'form3' %}
+            <option value='form3' selected="selected">Find Voltage | Using Power and Amperage</option>  
+            {% else %}
+            <option value='form3' >Find Voltage | Using Power and Amperage</option>  
+            {% endif %} 
+         
+          </select>
+          </div> 
+        {% endif %}
+        
+        {% if ctype != "form1" %}
+      <div class="input-group mb-3">
+                      
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Choose option</span>
+        </div>
+            <select id="ttype" name="ttype"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+            {% if ttype == 'form1' %}
+            <option value='form1' selected="selected">Find Amperage | Using Power, Voltage, and Power Factor</option>  
+            {% else %}
+            <option value='form1' >Find Amperage | Using Power, Voltage, and Power Factor</option>  
+            {% endif %}
+
+            {% if ttype == 'form2' %}
+            <option value='form2' selected="selected">Find Power | Using Voltage, Amperage, and Power Factor</option>  
+            {% else %}
+            <option value='form2' >Find Power | Using Voltage, Amperage, and Power Factor</option>  
+            {% endif %} 
+            
+            {% if ttype == 'form3' %}
+            <option value='form3' selected="selected">Find Voltage | Using Power, Amperage, and Power Factor</option>  
+            {% else %}
+            <option value='form3' >Find Voltage | Using Power, Amperage, and Power Factor</option>  
+            {% endif %}
+
+            {% if ttype == 'form4' %}
+            <option value='form4' selected="selected">Find Power Factor | Using Power, Amperage, and Power Factor</option>  
+            {% else %}
+            <option value='form4' >Find Power Factore | Using Power, Amperage, and Power</option>  
+            {% endif %}
+         
+          </select>
+          </div> 
+        {% endif %}
+        
+          {% if ttype != "form1" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Amperage</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="a" name="a" value="{{a}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step='any' required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="a_op">
+                            {% if a_op == 'A' %}
+                            <option value="A" selected="selected">Ampere (A)</option>
+                            {% else %}
+                            <option value="A">Ampere (A)</option>
+                            {% endif %}
+
+                            {% if a_op == 'mA' %}
+                            <option value="mA" selected="selected">MilliAmpere (mA))</option>
+                            {% else %}
+                            <option value="mA">MilliAmpere (mA))</option>
+                            {% endif %}
+
+                            {% if a_op == 'uA' %}
+                            <option value="uA" selected="selected">MicroApmere (uA)</option>
+                            {% else %}
+                            <option value="uA">MicroApmere (uA)</option>
+                            {% endif %}
+                        </select> 
+          </div>
+          {% endif %}             
+        
+          {% if ttype != "form3" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Voltage</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="v" name="v" value="{{v}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step='any' required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="v_op">
+                            {% if v_op == 'V' %}
+                            <option value="V" selected="selected">Volt (V)</option>
+                            {% else %}
+                            <option value="V">Volt (V)</option>
+                            {% endif %}
+
+                            {% if v_op == 'mV' %}
+                            <option value="mV" selected="selected">MilliVolt (mV)</option>
+                            {% else %}
+                            <option value="mV">MilliVolt (mV)</option>
+                            {% endif %}
+
+                            {% if v_op == 'kV' %}
+                            <option value="kV" selected="selected">KiloVolt (kV)</option>
+                            {% else %}
+                            <option value="kV">KiloVolt (kV)</option>
+                            {% endif %}
+
+                            {% if v_op == 'mV' %}
+                            <option value="mV" selected="selected">MegaVolt (mV)</option>
+                            {% else %}
+                            <option value="mV">MegaVolt (mV)</option>
+                            {% endif %}
+                        </select> 
+          </div>
+          {% endif %}  
+        {% if ttype != "form2" %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Power</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="p" name="p" value="{{p}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step='any' required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="p_op">
+                            {% if p_op == 'W' %}
+                            <option value="W" selected="selected">Watts (W)</option>
+                            {% else %}
+                            <option value="W">Watts (W)</option>
+                            {% endif %}
+
+                            {% if p_op == 'mW' %}
+                            <option value="mW" selected="selected">MilliWatts (mW)</option>
+                            {% else %}
+                            <option value="mW">MilliWatts (mW)</option>
+                            {% endif %}
+
+                            {% if p_op == 'kW' %}
+                            <option value="kW" selected="selected">KiloWatts (kW)</option>
+                            {% else %}
+                            <option value="kW">KiloWatts (kW)</option>
+                            {% endif %}
+
+                            {% if p_op == 'MV' %}
+                            <option value="MV" selected="selected">MegaWatts (MW)</option>
+                            {% else %}
+                            <option value="MV">MegaWatts (MW)</option>
+                            {% endif %}
+
+                            {% if p_op == 'GW' %}
+                            <option value="GW" selected="selected">GigaWatts (GW)</option>
+                            {% else %}
+                            <option value="GW">GigaWatts (GW)</option>
+                            {% endif %}
+
+                            {% if p_op == 'btu/h' %}
+                            <option value="btu/h" selected="selected">British Thermal Unit per hour (BTU/h)</option>
+                            {% else %}
+                            <option value="btu/h">British Thermal Unit per hour (BTU/h)</option>
+                            {% endif %}
+
+                            {% if p_op == 'hp(E)' %}
+                            <option value="hp(E)" selected="selected">Electric Horse Power (hp(E))</option>
+                            {% else %}
+                            <option value="hp(E)">Electric Horse Power (hp(E))</option>
+                            {% endif %}
+                        </select> 
+          </div>
+          {% endif %}  
+        {% if ctype != 'form1' and ttype != 'form4' %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Power Factor</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="pf" name="pf" value="{{pf}}" max="1" min="0"  required="" oninput="validateNumber(this);" class="form-control" type="number" step='any' required width="48"  >
+           </div>
+           {% endif %}
+           <div class=" center col mt-2">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'wattstoamps' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+        </form>
+    </div>
+</div>     
+
+<div id="clear">
+<div class="container" style="height: auto !important;">
+    {% if ctype == 'form1' and ttype == 'form1'  and v and p%}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Amperage(I):</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Amperage:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Amperages Formula I = P / V</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>V = {{v}} {{v_op}}</p>
+
+
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+            <br>
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Amperage I = {{pw}} / {{vw}} Ampere</p>
+            
+            
+            {% if output %}
+                <b>Amperage I = {{start}} x <sup>{{end}}</sup> Ampere</b>
+            {% else %}
+                <b>Amperage I = {{result}} Ampere </b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+
+    {% if ctype == 'form1' and ttype == 'form2'  and v and a %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Power:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Power (P):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Power Formula P = I * V</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>V = {{v}} {{v_op}}</p>
+
+
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+            <br>
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Power P = {{aw}} * {{vw}} Watts</p>
+            
+            
+            {% if output %}
+                <b>Amperage I = {{start}} x <sup>{{end}}</sup> Watts</b>
+            {% else %}
+                <b>Amperage I = {{result}} Watts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+    {% if ctype == 'form1' and ttype == 'form3'  and p and a %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Voltage:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Voltage (V):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Voltage Formula V = P / I</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>P = {{p}} {{p_op}}</p>
+
+
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+              <br>
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Voltage V= {{aw}} * {{vw}} Watts</p>
+            
+            
+            {% if output %}
+                <b>Voltage V = {{start}} x <sup>{{end}}</sup> Volts</b>
+            {% else %}
+                <b>Voltage V = {{result}} Volts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+            
+   </div>
+    </div>
+    {% endif %}
+    {% if ctype == 'form2' and ttype == 'form1'  and p and v and pf %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Amperage:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Amperage (V):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Amperage Formula I = P (V * PF)</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>V = {{v}} {{v_op}}</p>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>PF = {{pf}}</p>
+
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Amperage (I) = {{pw}} * ({{vw}} * {{pf}}) Volts</p>
+            
+            
+            {% if output %}
+                <b>Amperage (I) = {{start}} x <sup>{{end}}</sup> Volts</b>
+            {% else %}
+                <b>Amperage (I) = {{result}} Volts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+        {% endif %}
+
+    {% if ctype == 'form2' and ttype == 'form2'  and a and v and pf %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Power:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Power (P):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Power Formula P = V * (I * PF)</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>V = {{v}} {{v_op}}</p>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>PF = {{pf}}</p>
+
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Power (P) = {{vw}} * ({{aw}} * {{pf}}) Watts</p>
+            
+            
+            {% if output %}
+                <b>Power (P) = {{start}} x <sup>{{end}}</sup> Watts</b>
+            {% else %}
+                <b>Power (P) = {{result}} Watts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+        {% endif %}
+
+
+    {% if ctype == 'form2' and ttype == 'form3'  and a and p and pf %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Voltage:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Voltage (V):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Voltage Formula V = P / (I * PF) </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>PF = {{pf}}</p>
+
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Voltage (V) = {{pw}} * ({{aw}} * {{pf}}) Volts</p>
+            
+            
+            {% if output %}
+                <b>Voltage (V) = {{start}} x <sup>{{end}}</sup> Volts</b>
+            {% else %}
+                <b>Voltage (V) = {{result}} Volts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+        {% endif %}
+            
+{% if ctype == 'form2' and ttype == 'form4' and a and p and v %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Power factor:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Power factor (PF):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Power factor Formula PF = (P / V) / I </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>V = {{v}} {{v_op}}</p>
+
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+            <br>
+             {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+
+           
+            <p><b>Put values into formula</b></p>
+
+
+            <p>Power Factor (PF) = ({{pw}} /  {{vw}}) / {{aw}})</p>
+            <b>Power Factor (PF) = {{result}}</b>
+            
+             
+        {% endif %}
+
+
+{% if ctype == "form3" and ttype == "form1" and v and p and pf %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Amperage:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Amperage (I):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Amperage Formula I = {{formula}} </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>V = {{v}} {{v_op}}</p>
+            <p>PF = {{pf}}</p>
+
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+
+            
+            <p><b>Put values into formula</b></p>
+
+            {% if f %}
+            <p>Amperage (I)= {{pw}} / ( √3 * {{vw}} * {{pf}}) Ampere</p>
+            {% else %}
+            <p>Amperage (I)= {{pw}} / ( 3 * {{vw}} * {{pf}}) Ampere</p>
+            {% endif %}
+            
+            {% if output %}
+                <b>Amperage (I)= {{start}} x <sup>{{end}}</sup> Ampere</b>
+            {% else %}
+                <b>Amperage (I)= {{result}} Ampere</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+    {% endif %}
+
+{% if ctype == "form3" and ttype == "form2" and v and a and pf %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Power:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Power (P):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Power Formula P = {{formula}} </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>V = {{v}} {{v_op}}</p>
+            <p>PF = {{pf}}</p>
+
+            
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+
+            
+            <p><b>Put values into formula</b></p>
+
+            {% if f %}
+            <p>Power (P) = ( √3 * {{vw}} * {{pf}}) * {{aw}} Watts</p>
+            {% else %}
+            <p>Power (P) = ( 3 * {{vw}} * {{pf}}) * {{aw}}  Watts</p>
+            {% endif %}
+            
+            {% if output %}
+                <b>Power (P) = {{start}} x <sup>{{end}}</sup> Watts</b>
+            {% else %}
+                <b>Power (P) = {{result}} Watts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+    {% endif %}
+    {% if ctype == "form3" and ttype == "form3" and p and a and pf %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Voltage:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Voltage (V):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Voltage Formula V = {{formula}} </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>PF = {{pf}}</p>
+
+            
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+            
+            
+            <p><b>Put values into formula</b></p>
+
+            {% if f %}
+            <p>Voltage (V) = {{pw}} / ( √3  * {{pf}} * {{aw}}) Volts</p>
+            {% else %}
+            <p>Voltage (V) = {{pw}} / ( 3  * {{pf}} * {{aw}})  Volts</p>
+            {% endif %}
+            
+            {% if output %}
+                <b>Voltage (V) = {{start}} x <sup>{{end}}</sup> Volts</b>
+            {% else %}
+                <b>Voltage (V) = {{result}} Volts</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+    {% endif %}
+
+    {% if ctype == "form3" and ttype == "form4" and p and a and v %}
+    
+    <div class="card c1" id="wattstoamps">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Power Factor:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Power Factor (PF):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Power Factor Formula PF = {{formula}} </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>P is the Power,</li>
+                        <li>V is the Voltage,</li>
+                        <li>I is the Amperages,</li>
+                        <li>PF is the Power Factor,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>I = {{a}} {{a_op}}</p>
+            <p>P = {{p}} {{p_op}}</p>
+            <p>V = {{vf}} {{v_op}}</p>
+
+            
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            {% if p_op == 'mW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MilliWatts = 0.001 Watts</p>
+            <p>Power (P) = Watts(p) / 1000 W</p>
+            <p>Power (P) = {{p}} / 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            
+            {% elif p_op == 'kW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 KiloWatts = 1000 Watts</p>
+            <p>Power (P) = Watts(p) * 1000 W</p>
+            <p>Power (P) = {{p}} * 1000 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+          
+            {% elif p_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 MegaWatts = 10<sup>6</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>6</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'GW' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 GigaWatts = 10<sup>9</sup> Watts</p>
+            <p>Power (P) = Watts(p) * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{p}} * 10<sup>9</sup> W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'btu/h' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 British Thermal Unit per hour = 0.293071 Watts</p>
+            <p>Power (P) = Watts(p) / 3.41 W</p>
+            <p>Power (P) = {{p}} / 3.41 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+
+            {% elif p_op == 'hp(E)' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Watts {{p}} "{{p_op}}" to "Watts"</b></summary>
+            <p>1 Electric Horse power = 746 Watts</p>
+            <p>Power (P) = Watts(p) * 746 W</p>
+            <p>Power (P) = {{p}} * 746 W</p>
+            <p>Power (P) = {{pw}} W</p>
+            </details>
+            {% endif %}
+            <br>
+
+            {% if a_op == 'mA' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MilliAmpere = 0.001 Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 1000 A</p>
+            <p>Amperage (I) = {{a}} / 1000 A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            
+            {% elif a_op == 'uA' %}
+            <details class="border border-primary">
+             <summary><b>Convert the Amperege {{a}} "{{a_op}}" to "Ampere"</b></summary>
+            <p>1 MicroAmpere = 10<sup>6</sup> Ampere</p>
+            <p>Amperage (I) = Amperage (I) / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{a}} / 10<sup>6</sup> A</p>
+            <p>Amperage (I) = {{aw}} A</p>
+            </details>
+            {% endif %}
+            
+            <br>
+            {% if v_op == 'mV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MilliVoltage = 0.001 Volt</p>
+            <p>Voltage(V)  = Voltage(V) / 1000 V</p>
+            <p>Voltage(V)  = {{v}} / 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            
+            {% elif v_op == 'kV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 KiloVoltage = 1000 Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 1000 V</p>
+            <p>Voltage(V)  = {{v}} * 1000 V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+          
+            {% elif v_op == 'MV' %}
+            <details class="border border-primary">
+            <summary><b>Convert the Voltage {{v}} "{{v_op}}" to "Volt"</b></summary>
+            <p>1 MegaVoltage = 10<sup>6</sup> Volt</p>
+            <p>Voltage(V)  = Voltage(V) * 10<sup>6</sup> V</p>
+            <p>Voltage(V)  = {{v}} * 10<sup>6</sup> V</p>
+            <p>Voltage(V) = {{vw}} V</p>
+            </details>
+            {% endif %}
+            
+            
+            <p><b>Put values into formula</b></p>
+
+            {% if f %}
+            <p>Power Factor (PF)= {{pw}} / ( √3  * {{vw}} * {{aw}})</p>
+            {% else %}
+            <p>Power Factor (PF)= {{pw}} / ( 3  * {{vw}} * {{aw}}) </p>
+            {% endif %}
+            
+            {% if output %}
+                <b>Power Factor (PF)= {{start}} x <sup>{{end}}</sup></b>
+            {% else %}
+                <b>Power Factor (PF)= {{result}}</b>
+            {% endif %}
+             <details class="border border-primary">
+            
+            <summary>All conversion here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Unit</th>
+                <th>Value</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+    {% endif %}
+            
+   </div>
+    </div>
+       
+{% endblock content %}

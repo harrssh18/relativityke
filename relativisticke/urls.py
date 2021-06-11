@@ -19,5 +19,7 @@ from calc import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name="home"),
-    path('physics-calculator/',views.calc1,name="calc1"),
+    path('relativistic-kinetic-energy/',views.relativistic,name="relativistic"),
+    path('compton-scattering/',views.compton_scattering,name="compton_scattering"),
+    path('watts-to-amps/',views.wattstoamps,name="wattstoamps"),
 ]
